@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   server1:
-    image: alextanhongpin/grpc-server:latest
+    image: xiangli/grpc-server:latest
     ports:
       - 127.0.0.1:50051:50051
     environment:
@@ -13,7 +13,7 @@ services:
       - nginx.key
 
   server2:
-    image: alextanhongpin/grpc-server:latest
+    image: xiangli/grpc-server:latest
     ports:
       - 127.0.0.1:50052:50052
     environment:
@@ -25,7 +25,7 @@ services:
       - nginx.key
 
   client:
-    image: alextanhongpin/grpc-client:latest
+    image: xiangli/grpc-client:latest
     environment:
       - SSL_CERT=/run/secrets/nginx.cert
       - SRV_URL=nginx:1443
@@ -33,7 +33,7 @@ services:
       - nginx.cert
 
   nginx:
-    image: nginx:1.13.11
+    image: nginx:1.19.5
     ports:
       - 127.0.0.1:1443:1443
     volumes:

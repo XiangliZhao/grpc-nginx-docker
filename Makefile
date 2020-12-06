@@ -14,7 +14,7 @@ stub:
 	--proto_path=. "{}" \;
 
 nginx-cert:
-	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./cert/nginx.key -out ./cert/nginx.cert  -subj '/CN=nginx'
+	openssl req -x509 -newkey rsa:4096 -sha256 -utf8 -days 365 -nodes -config ./san.cfg  -subj '/CN=nginx'   -keyout ./cert/nginx.key -out ./cert/nginx.cert
 
 print:
 	@echo VERSION=${VERSION} 
@@ -25,7 +25,7 @@ print:
 	@echo VENDOR=${VENDOR}
 
 build-server:
-	cd server && docker build -t alextanhongpin/grpc-server --build-arg VERSION="${VERSION}" \
+	cd server && docker build -t xiangli/grpc-server --build-arg VERSION="${VERSION}" \
 	--build-arg BUILD_DATE="${BUILD_DATE}" \
 	--build-arg VCS_URL="${VCS_URL}" \
 	--build-arg VCS_REF="${VCS_REF}" \
@@ -33,7 +33,7 @@ build-server:
 	--build-arg VENDOR="${VENDOR}" .
 
 build-client:
-	cd client && docker build -t alextanhongpin/grpc-client --build-arg VERSION="${VERSION}" \
+	cd client && docker build -t xiangli/grpc-client --build-arg VERSION="${VERSION}" \
 	--build-arg BUILD_DATE="${BUILD_DATE}" \
 	--build-arg VCS_URL="${VCS_URL}" \
 	--build-arg VCS_REF="${VCS_REF}" \
@@ -41,10 +41,10 @@ build-client:
 	--build-arg VENDOR="${VENDOR}" .
 
 run:
-	@docker run alextanhongpin/hello-go
+	@docker run xiangli/hello-go
 
 label:
-	@docker inspect --format='{{range $k, $v := .Config.Labels}}{{$k}}={{$v}}{{println}}{{end}}' alextanhongpin/hello-go
+	@docker inspect --format='{{range $k, $v := .Config.Labels}}{{$k}}={{$v}}{{println}}{{end}}' xiangli/hello-go
 
 up:
 	@docker-compose up -d
