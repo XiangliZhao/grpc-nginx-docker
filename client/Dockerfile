@@ -1,14 +1,21 @@
+
 FROM golang:1.15 as builder
+
 
 WORKDIR /go/src/github.com/alextanhongpin/grpc-client
 
 COPY main.go .
+
 # 修改使用使用国内代理, 否则会很慢
 RUN set -ex \
 && go env -w GO111MODULE=on \
 && go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod init 
 RUN go get -d -v
+
+
+RUN go get -d -v
+
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
 

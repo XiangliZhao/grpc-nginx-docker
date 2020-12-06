@@ -13,6 +13,7 @@ services:
       - nginx.key
 
   server2:
+
     image: xiangli/grpc-server:latest
     ports:
       - 127.0.0.1:50052:50052
