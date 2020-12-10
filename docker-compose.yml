@@ -24,6 +24,18 @@ services:
       - nginx.cert
       - nginx.key
 
+  server3:
+    image: xiangli/grpc-net5-server:latest
+    ports:
+      - 127.0.0.1:50053:50053
+    environment:
+      - PORT=:50053
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/run/secrets/nginx.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=1234
+      - ASPNETCORE_HTTPS_PORT=50053
+    secrets:
+      - nginx.pfx
+
   client:
     image: xiangli/grpc-client:latest
     environment:
@@ -47,3 +59,5 @@ secrets:
     file: ./cert/nginx.cert
   nginx.key: 
     file: ./cert/nginx.key
+  nginx.pfx: 
+    file: ./cert/nginx.pfx
