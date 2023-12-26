@@ -32,8 +32,8 @@ build-server:
 	--build-arg NAME="${NAME}" \
 	--build-arg VENDOR="${VENDOR}" .
 
-build-net5-server:
-	docker build -t xiangli/grpc-net5-server --build-arg VERSION="${VERSION}" \
+build-net8-server:
+	docker build -t xiangli/grpc-net8-server --build-arg VERSION="${VERSION}" \
 	--build-arg BUILD_DATE="${BUILD_DATE}" \
 	--build-arg VCS_URL="${VCS_URL}" \
 	--build-arg VCS_REF="${VCS_REF}" \

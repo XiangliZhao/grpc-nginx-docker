@@ -17,7 +17,7 @@ namespace GrpcGreeter
             _logger.LogInformation("client called start.");
             return Task.FromResult(new EchoResponse
             {
-                Text = "Hello " + request.Text + ", I'm from .net 5"
+                Text = "Hello " + request.Text + ", I'm from .net 8"
             }) ;
         }
     }

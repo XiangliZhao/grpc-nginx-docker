@@ -25,7 +25,7 @@ services:
       - nginx.key
 
   server3:
-    image: xiangli/grpc-net5-server:latest
+    image: xiangli/grpc-net8-server:latest
     ports:
       - 127.0.0.1:50053:50053
     environment:
