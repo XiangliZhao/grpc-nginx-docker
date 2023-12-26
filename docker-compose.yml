@@ -45,7 +45,7 @@ services:
       - nginx.cert
 
   nginx:
-    image: nginx:1.19.5
+    image: nginx:latest
     ports:
       - 127.0.0.1:1443:1443
     volumes:
